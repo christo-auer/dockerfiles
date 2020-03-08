@@ -15,12 +15,15 @@ RUN adduser \
 ARG WGET=wget
 ARG GIT=git
 ARG SSH=ssh
+ARG SSHCLIENT=openssh-client
 ARG MAKE=make
 ARG PANDOC=pandoc
 ARG PCITEPROC=pandoc-citeproc
 ARG PYGMENTS=python3-pygments
 ARG FIG2DEV=fig2dev
 ARG JRE=default-jre-headless
+ARG SCONS=scons
+ARG GRADLE=gradle
 
 RUN apt-get update && apt-get install -y \
   texlive-full \
@@ -29,6 +32,8 @@ RUN apt-get update && apt-get install -y \
   "$GIT" \
   "$SSH" \
   "$MAKE" \
+  "$SCONS" \
+  "$SSHCLIENT" \
   # markup format conversion tool
   "$PANDOC" \
   "$PCITEPROC" \
@@ -37,7 +42,8 @@ RUN apt-get update && apt-get install -y \
   # syntax highlighting package
   "$PYGMENTS" \
   # Java runtime environment (e.g. for arara)
-  "$JRE" && \
+  "$JRE" \ 
+  "$GRADLE" && \
   # Removing documentation packages *after* installing them is kind of hacky,
   # but it only adds some overhead while building the image.
   apt-get --purge remove -y .\*-doc$ && \
