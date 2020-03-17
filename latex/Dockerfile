@@ -14,12 +14,14 @@ RUN adduser \
 
 ARG SSHCLIENT=openssh-client
 ARG SCONS=scons
+ARG JDK=openjdk-13-jdk
 
 RUN apt-get update && apt-get install -y \
   texlive-full \
   # some auxiliary tools
   "$SCONS" \
-  "$SSHCLIENT" && \
+  "$SSHCLIENT" \
+  "$JDK" && \
   # Removing documentation packages *after* installing them is kind of hacky,
   # but it only adds some overhead while building the image.
   apt-get --purge remove -y .\*-doc$ && \
