@@ -15,13 +15,15 @@ RUN adduser \
 ARG SSHCLIENT=openssh-client
 ARG SCONS=scons
 ARG JDK=openjdk-13-jdk
+ARG PANDOC=pandoc
 
 RUN apt-get update && apt-get install -y \
   texlive-full \
   # some auxiliary tools
   "$SCONS" \
   "$SSHCLIENT" \
-  "$JDK" && \
+  "$JDK" \
+  "$PANDOC" && \
   # Removing documentation packages *after* installing them is kind of hacky,
   # but it only adds some overhead while building the image.
   apt-get --purge remove -y .\*-doc$ && \
