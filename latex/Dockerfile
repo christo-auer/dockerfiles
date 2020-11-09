@@ -16,6 +16,7 @@ ARG SSHCLIENT=openssh-client
 ARG SCONS=scons
 ARG JDK=openjdk-13-jdk
 ARG PANDOC=pandoc
+ARG GIT=git
 
 RUN apt-get update && apt-get install -y \
   texlive-full \
@@ -23,7 +24,8 @@ RUN apt-get update && apt-get install -y \
   "$SCONS" \
   "$SSHCLIENT" \
   "$JDK" \
-  "$PANDOC" && \
+  "$PANDOC" \
+  "$GIT" && \
   # Removing documentation packages *after* installing them is kind of hacky,
   # but it only adds some overhead while building the image.
   apt-get --purge remove -y .\*-doc$ && \
