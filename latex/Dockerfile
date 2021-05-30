@@ -14,7 +14,7 @@ RUN adduser \
 
 ARG SSHCLIENT=openssh-client
 ARG SCONS=scons
-ARG JDK=openjdk-13-jdk
+ARG JDK=openjdk-11-jdk
 ARG PANDOC=pandoc
 ARG GIT=git
 
